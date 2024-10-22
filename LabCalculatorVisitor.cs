@@ -100,6 +100,30 @@ namespace Lab1MAUI
             }
         }
 
+public override double VisitMaxExpr(LabCalculatorParser.MaxExprContext context)
+{
+    var left = WalkLeft(context);
+    var right = WalkRight(context);
+
+    
+    double result = Math.Max(left, right);
+
+    Debug.WriteLine("max({0}, {1}) = {2}", left, right, result);
+
+    return result;
+}
+public override double VisitMinExpr(LabCalculatorParser.MinExprContext context)
+{
+    var left = WalkLeft(context);
+    var right = WalkRight(context);
+
+    
+    double result = Math.Min(left, right);
+
+    Debug.WriteLine("min({0}, {1}) = {2}", left, right, result);
+
+    return result;
+}
         private double WalkLeft(LabCalculatorParser.ExpressionContext context)
         {
             return Visit(context.GetRuleContext<LabCalculatorParser.ExpressionContext>(0));
